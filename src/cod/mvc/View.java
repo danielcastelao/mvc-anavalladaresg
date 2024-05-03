@@ -7,7 +7,7 @@ public class View {
      * @param matricula Matrícula del coche
      * @param velocidad Velocidad del coche
      */
-    public void muestraVelocidad(String matricula, int velocidad) {
+    public static void muestraVelocidad(String matricula, int velocidad) {
         System.out.println("The speed of car " + matricula + " is " + velocidad);
     }
 }
