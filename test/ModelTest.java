@@ -63,4 +63,12 @@ public class ModelTest {
         assertEquals(100, velocidad);
     }
 
+    /**
+     * Prueba la obtención de la velocidad de un coche no existente
+     */
+    @Test
+    void getVelocidadCocheNoExistente() {
+        int velocidad = Model.getVelocidad("0000-XXX");
+        assertEquals(-1, velocidad);
+    }
 }
