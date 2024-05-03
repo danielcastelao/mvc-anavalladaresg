@@ -1,10 +1,16 @@
 import cod.mvc.Coche;
 import cod.mvc.Model;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ModelTest {
+
+    @BeforeEach
+    void setUp() {
+        Model.crearCoche("1234-ABC", "Model S", 100);                    // Assuming there's a method to add cars
+    }
 
     /**
      * Comprueba que puedes añadir un coche al parking
