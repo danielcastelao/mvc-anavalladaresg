@@ -53,4 +53,14 @@ public class ModelTest {
         Coche coche = Model.getCoche("0000-XXX");
         assertNull(coche);
     }
+
+    /**
+     * Prueba la obtención de la velocidad de un coche existente
+     */
+    @Test
+    void getVelocidadCocheExistente() {
+        int velocidad = Model.getVelocidad("1234-ABC");
+        assertEquals(100, velocidad);
+    }
+
 }
