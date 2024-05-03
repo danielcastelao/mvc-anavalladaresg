@@ -24,4 +24,14 @@ public class ModelTest {
         assertNotNull(coche);
         assertEquals("1234-ABC", coche.getMatricula());
     }
+
+    /**
+     * Prueba la búsqueda de un coche no existente
+     */
+    @Test
+    void getCocheNoExistente() {
+        Coche coche = Model.getCoche("0000-XXX");
+        assertNull(coche);
+    }
+
 }
