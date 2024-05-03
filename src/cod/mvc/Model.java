@@ -28,6 +28,7 @@ public class Model {
 
     /**
      * Cambia la velocidad de un coche
+     *
      * @param matricula Matrícula del coche
      * @param velocidad Nueva velocidad
      */
@@ -36,6 +37,20 @@ public class Model {
         if (coche != null) {
             coche.setVelocidad(velocidad);
         }
+    }
+
+    /**
+     * Obtiene la velocidad de un coche
+     *
+     * @param matricula Matrícula del coche
+     * @return Velocidad del coche o -1 si no existe
+     */
+    public int getVelocidad(String matricula) {
+        Coche coche = getCoche(matricula);
+        if (coche != null) {
+            return coche.getVelocidad();
+        }
+        return -1;
     }
 
 }
