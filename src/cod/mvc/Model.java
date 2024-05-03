@@ -13,6 +13,7 @@ public class Model {
 
     /**
      * Busca un coche en el parking por su matrícula
+     *
      * @param matricula Matrícula del coche a buscar
      * @return Coche encontrado o null si no existe
      */
@@ -23,6 +24,18 @@ public class Model {
             }
         }
         return null;
+    }
+
+    /**
+     * Cambia la velocidad de un coche
+     * @param matricula Matrícula del coche
+     * @param velocidad Nueva velocidad
+     */
+    public void cambiarVelocidad(String matricula, int velocidad) {
+        Coche coche = getCoche(matricula);
+        if (coche != null) {
+            coche.setVelocidad(velocidad);
+        }
     }
 
 }
