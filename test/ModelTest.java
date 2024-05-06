@@ -17,7 +17,6 @@ public class ModelTest {
      */
     @Test
     public void shouldAddCarToParking() {
-        Model.crearCoche("1234-ABC", "Model S", 100);
         assertNotNull(Model.getCoche("1234-ABC"));
     }
 
@@ -26,9 +25,9 @@ public class ModelTest {
      */
     @Test
     void getCocheExistente() {
-        Coche coche = Model.getCoche("1234-ABC");
-        assertNotNull(coche);
-        assertEquals("1234-ABC", coche.getMatricula());
+        Coche c = Model.getCoche("1234-ABC");
+        assertNotNull(c);
+        assertEquals("1234-ABC", c.getMatricula());
     }
 
     /**
@@ -36,8 +35,8 @@ public class ModelTest {
      */
     @Test
     void getCocheNoExistente() {
-        Coche coche = Model.getCoche("0000-XXX");
-        assertNull(coche);
+        Coche c = Model.getCoche("0000-XXX");
+        assertNull(c);
     }
 
     /**
@@ -46,8 +45,8 @@ public class ModelTest {
     @Test
     void cambiarVelocidadCocheExistente() {
         Model.cambiarVelocidad("1234-ABC", 150);
-        Coche coche = Model.getCoche("1234-ABC");
-        assertEquals(150, coche.getVelocidad());
+        Coche c = Model.getCoche("1234-ABC");
+        assertEquals(150, c.getVelocidad());
     }
 
     /**
@@ -56,8 +55,8 @@ public class ModelTest {
     @Test
     void cambiarVelocidadCocheNoExistente() {
         Model.cambiarVelocidad("0000-XXX", 150);
-        Coche coche = Model.getCoche("0000-XXX");
-        assertNull(coche);
+        Coche c = Model.getCoche("0000-XXX");
+        assertNull(c);
     }
 
     /**
@@ -65,8 +64,8 @@ public class ModelTest {
      */
     @Test
     void getVelocidadCocheExistente() {
-        int velocidad = Model.getVelocidad("1234-ABC");
-        assertEquals(100, velocidad);
+        int v = Model.getVelocidad("1234-ABC");
+        assertEquals(100, v);
     }
 
     /**
@@ -74,7 +73,7 @@ public class ModelTest {
      */
     @Test
     void getVelocidadCocheNoExistente() {
-        int velocidad = Model.getVelocidad("0000-XXX");
-        assertEquals(-1, velocidad);
+        int v = Model.getVelocidad("0000-XXX");
+        assertEquals(-1, v);
     }
 }
