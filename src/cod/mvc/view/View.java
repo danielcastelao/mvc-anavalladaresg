@@ -1,4 +1,4 @@
-package cod.mvc;
+package cod.mvc.view;
 
 public class View {
     /**
@@ -6,8 +6,10 @@ public class View {
      *
      * @param matricula Matrícula del coche
      * @param velocidad Velocidad del coche
+     * @return true si se ha mostrado la velocidad
      */
-    public static void muestraVelocidad(String matricula, int velocidad) {
+    public static boolean muestraVelocidad(String matricula, Integer velocidad) {
         System.out.println("The speed of car " + matricula + " is " + velocidad);
+        return true;
     }
 }

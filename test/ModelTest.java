@@ -1,5 +1,5 @@
-import cod.mvc.Coche;
-import cod.mvc.Model;
+import cod.mvc.model.Coche;
+import cod.mvc.model.Model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +9,7 @@ public class ModelTest {
 
     @BeforeEach
     void setUp() {
-        Model.crearCoche("1234-ABC", "Model S", 100);                    // Assuming there's a method to add cars
+        Model.crearCoche("1234-ABC", "Model S");                    // Assuming there's a method to add cars
     }
 
     /**
@@ -27,7 +27,7 @@ public class ModelTest {
     void getCocheExistente() {
         Coche c = Model.getCoche("1234-ABC");
         assertNotNull(c);
-        assertEquals("1234-ABC", c.getMatricula());
+        assertEquals("1234-ABC", c.matricula);
     }
 
     /**
@@ -46,7 +46,8 @@ public class ModelTest {
     void cambiarVelocidadCocheExistente() {
         Model.cambiarVelocidad("1234-ABC", 150);
         Coche c = Model.getCoche("1234-ABC");
-        assertEquals(150, c.getVelocidad());
+        assert c != null;
+        assertEquals(150, c.velocidad);
     }
 
     /**
@@ -65,7 +66,7 @@ public class ModelTest {
     @Test
     void getVelocidadCocheExistente() {
         int v = Model.getVelocidad("1234-ABC");
-        assertEquals(100, v);
+        assertEquals(0, v);
     }
 
     /**
