@@ -1,24 +1,26 @@
-package cod.mvc;
+package cod.mvc.model;
+
+import cod.mvc.controller.Observer;
 
 import java.util.ArrayList;
 
-public class Model {
+public class Model implements Observable {
 
     /**
      * Lista de coches en el parking
      */
     private static ArrayList<Coche> parking = new ArrayList<>();
+    private static ArrayList<Observer> observers = new ArrayList<Observer>();
 
     /**
      * Crea un coche y lo añade al parking
      *
      * @param matricula Matrícula del coche
      * @param modelo    Modelo del coche
-     * @param velocidad Velocidad del coche
      * @return Coche creado
      */
-    public static Coche crearCoche(String matricula, String modelo, int velocidad) {
-        Coche c = new Coche(matricula, modelo, velocidad);
+    public static Coche crearCoche(String matricula, String modelo) {
+        Coche c = new Coche(matricula, modelo);
         parking.add(c);
         return c;
     }
@@ -31,7 +33,7 @@ public class Model {
      */
     public static Coche getCoche(String matricula) {
         for (Coche c : parking) {
-            if (c.getMatricula().equals(matricula)) {
+            if (c.matricula.equals(matricula)) {
                 return c;
             }
         }
@@ -47,7 +49,8 @@ public class Model {
     public static Integer cambiarVelocidad(String matricula, int velocidad) {
         Coche c = getCoche(matricula);
         if (c != null) {
-            c.setVelocidad(velocidad);
+            c.velocidad = velocidad;
+            notifyObservers(getCoche(matricula));
             return velocidad;
         }
         return null;
@@ -62,9 +65,36 @@ public class Model {
     public static int getVelocidad(String matricula) {
         Coche c = getCoche(matricula);
         if (c != null) {
-            return c.getVelocidad();
+            return c.velocidad;
         }
         return -1;
     }
 
+    /**
+     * Añade un observador
+     * @param observer Observador a añadir
+     */
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    /**
+     * Elimina un observador
+     * @param observer Observador a eliminar
+     */
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    /**
+     * Notifica a los observadores
+     * @param coche Coche que ha cambiado
+     */
+    public static void notifyObservers(Coche coche) {
+        for(Observer o : observers) {
+            o.update(coche);
+        }
+    }
 }
