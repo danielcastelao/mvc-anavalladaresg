@@ -46,11 +46,11 @@ public class Model implements Observable {
      * @param matricula Matrícula del coche
      * @param velocidad Nueva velocidad
      */
-    public static Integer cambiarVelocidad(String matricula, int velocidad) {
+    public static Integer cambiarVelocidad(String matricula, int velocidad, Model model) {
         Coche c = getCoche(matricula);
         if (c != null) {
             c.velocidad = velocidad;
-            notifyObservers(getCoche(matricula));
+            model.notifyObservers(getCoche(matricula), model);
             return velocidad;
         }
         return null;
@@ -92,9 +92,9 @@ public class Model implements Observable {
      * Notifica a los observadores
      * @param coche Coche que ha cambiado
      */
-    public static void notifyObservers(Coche coche) {
+    public void notifyObservers(Coche coche, Model model) {
         for(Observer o : observers) {
-            o.update(coche);
+            o.update(coche, this);
         }
     }
 }
