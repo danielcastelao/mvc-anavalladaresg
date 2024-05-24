@@ -10,6 +10,7 @@ public class ObsLimite implements Observer {
         if (coche.velocidad > LIMITE) {
             System.out.println("[OberverLimite] ¡Cuidado! ¡Vas a " + coche.velocidad + " km/h!");
             model.cambiarVelocidad(coche.matricula, LIMITE);
+            System.out.println("[OberverLimite] Velocidad limitada a " + LIMITE + " km/h");
         }
     }
 }
