@@ -7,6 +7,5 @@ import java.util.ArrayList;
 public interface Observable {
     void addObserver(Observer observer);
     void removeObserver(Observer observer);
-    static void notifyObservers(Coche coche) {
-    }
+    void notifyObservers(Coche coche, Model model);
 }
