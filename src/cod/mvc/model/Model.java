@@ -119,4 +119,14 @@ public class Model implements Observable {
             o.update(coche, this);
         }
     }
+
+    /**
+     * Muestra un coche
+     * @param coche Coche a mostrar
+     */
+    public void verCoche(Coche coche) {
+        for(Observer o : observers) {
+            o.verCoche(coche);
+        }
+    }
 }
