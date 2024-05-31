@@ -24,6 +24,17 @@ public class Model implements Observable {
     }
 
     /**
+     * Devuelve la instancia única de la clase Model
+     * @return Instancia única de la clase Model
+     */
+    public static Model getInstance() {
+        if (instance == null) {
+            instance = new Model();
+        }
+        return instance;
+    }
+
+    /**
      * Crea un coche y lo añade al parking
      *
      * @param matricula Matrícula del coche
