@@ -20,7 +20,7 @@ public class View {
      *
      * @param coche Coche a mostrar
      */
-    public void mostrarCoche(Coche coche) {
+    public static void mostrarCoche(Coche coche) {
         if (coche != null) {
             System.out.println("Matrícula: " + coche.matricula);
             System.out.println("Modelo: " + coche.modelo);
