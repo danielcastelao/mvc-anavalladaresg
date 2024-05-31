@@ -7,10 +7,32 @@ import java.util.ArrayList;
 public class Model implements Observable {
 
     /**
+     * Instancia única de la clase Model
+     */
+    private static Model instance = null;
+
+    /**
      * Lista de coches en el parking
      */
     private static ArrayList<Coche> parking = new ArrayList<>();
     private static ArrayList<Observer> observers = new ArrayList<Observer>();
+
+    /**
+     * Constructor privado vacío
+     */
+    private Model() {
+    }
+
+    /**
+     * Devuelve la instancia única de la clase Model
+     * @return Instancia única de la clase Model
+     */
+    public static Model getInstance() {
+        if (instance == null) {
+            instance = new Model();
+        }
+        return instance;
+    }
 
     /**
      * Crea un coche y lo añade al parking
@@ -95,6 +117,16 @@ public class Model implements Observable {
     public void notifyObservers(Coche coche, Model model) {
         for(Observer o : observers) {
             o.update(coche, this);
+        }
+    }
+
+    /**
+     * Muestra un coche
+     * @param coche Coche a mostrar
+     */
+    public void verCoche(Coche coche) {
+        for(Observer o : observers) {
+            o.verCoche(coche);
         }
     }
 }

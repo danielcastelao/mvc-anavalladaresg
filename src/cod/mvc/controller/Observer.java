@@ -5,4 +5,5 @@ import cod.mvc.model.Model;
 
 public interface Observer {
     void update(Coche coche, Model model);
+    void verCoche(Coche coche);
 }

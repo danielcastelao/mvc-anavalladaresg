@@ -44,7 +44,7 @@ public class ModelTest {
      */
     @Test
     void cambiarVelocidadCocheExistente() {
-        Model.cambiarVelocidad("1234-ABC", 150);
+        Model.cambiarVelocidad("1234-ABC", 150, null);
         Coche c = Model.getCoche("1234-ABC");
         assert c != null;
         assertEquals(150, c.velocidad);
@@ -55,7 +55,7 @@ public class ModelTest {
      */
     @Test
     void cambiarVelocidadCocheNoExistente() {
-        Model.cambiarVelocidad("0000-XXX", 150);
+        Model.cambiarVelocidad("0000-XXX", 150, null);
         Coche c = Model.getCoche("0000-XXX");
         assertNull(c);
     }
