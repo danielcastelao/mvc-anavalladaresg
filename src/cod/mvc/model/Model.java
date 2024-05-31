@@ -18,6 +18,12 @@ public class Model implements Observable {
     private static ArrayList<Observer> observers = new ArrayList<Observer>();
 
     /**
+     * Constructor privado vacío
+     */
+    private Model() {
+    }
+
+    /**
      * Crea un coche y lo añade al parking
      *
      * @param matricula Matrícula del coche
