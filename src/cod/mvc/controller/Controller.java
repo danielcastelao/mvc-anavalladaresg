@@ -1,5 +1,6 @@
 package cod.mvc.controller;
 
+import cod.mvc.model.Coche;
 import cod.mvc.model.Model;
 
 public class Controller extends ObsVelocidad {
@@ -21,5 +22,13 @@ public class Controller extends ObsVelocidad {
 
     public void cambiarVelocidad(String matricula, Integer velocidad, Model model) {
         MODEL.cambiarVelocidad(matricula, velocidad, model);
+    }
+
+    /**
+     * Ver un coche
+     * @param coche Coche
+     */
+    public void verCoche(Coche coche) {
+        MODEL.verCoche(coche);
     }
 }
