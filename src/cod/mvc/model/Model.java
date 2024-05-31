@@ -7,6 +7,11 @@ import java.util.ArrayList;
 public class Model implements Observable {
 
     /**
+     * Instancia única de la clase Model
+     */
+    private static Model instance = null;
+
+    /**
      * Lista de coches en el parking
      */
     private static ArrayList<Coche> parking = new ArrayList<>();
