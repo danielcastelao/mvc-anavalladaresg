@@ -8,6 +8,7 @@ public class App {
     public static void main(String[] args) {
         Model miModel = Model.getInstance();
         Controller miController = new Controller(miModel);
+        View miView = new View();
 
         // Crear tres coches
         miController.crearCoche("LaFerrari", "SBC 1234");
@@ -20,5 +21,7 @@ public class App {
         // otro cambio de velocidad
         // sobrepasando la velocidad máxima
         miController.cambiarVelocidad("HYU 4567", 150, miModel);
+        miView.mostrarCoche(Model.getCoche("HYU 4567"));
+        miController
     }
 }
