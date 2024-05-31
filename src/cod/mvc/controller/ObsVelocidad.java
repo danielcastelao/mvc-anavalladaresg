@@ -11,7 +11,7 @@ public class ObsVelocidad implements Observer {
      */
     @Override
     public void update(Coche coche, Model model) {
-        View.
+        View.mostrarCoche(coche);
         View.muestraVelocidad(coche.matricula, coche.velocidad);
     }
 }
