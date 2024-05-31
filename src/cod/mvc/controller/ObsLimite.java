@@ -13,4 +13,13 @@ public class ObsLimite implements Observer {
             System.out.println("[OberverLimite] Velocidad limitada a " + LIMITE + " km/h");
         }
     }
+
+    /**
+     * Ver un coche
+      * @param coche Coche
+     */
+    @Override
+    public void verCoche(Coche coche) {
+        System.out.println("[OberverLimite] Coche: " + coche.matricula + " a " + coche.velocidad + " km/h");
+    }
 }
