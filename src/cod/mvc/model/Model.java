@@ -57,6 +57,24 @@ public class Model implements Observable {
     }
 
     /**
+     * Sube la velocidad de un coche
+     *
+     * @param matricula Matrícula del coche
+     * @param v         Velocidad a subir
+     * @param model     Modelo
+     * @return Nueva velocidad o null si no existe el coche
+     */
+    public static Integer subirVelocidad(String matricula, int v, Model model) {
+        Coche c = getCoche(matricula);
+        if (c != null) {
+            c.velocidad += v;
+            model.notifyObservers(getCoche(matricula), model);
+            return c.velocidad;
+        }
+        return null;
+    }
+
+    /**
      * Obtiene la velocidad de un coche
      *
      * @param matricula Matrícula del coche
@@ -72,6 +90,7 @@ public class Model implements Observable {
 
     /**
      * Añade un observador
+     *
      * @param observer Observador a añadir
      */
     @Override
@@ -81,6 +100,7 @@ public class Model implements Observable {
 
     /**
      * Elimina un observador
+     *
      * @param observer Observador a eliminar
      */
     @Override
@@ -90,10 +110,11 @@ public class Model implements Observable {
 
     /**
      * Notifica a los observadores
+     *
      * @param coche Coche que ha cambiado
      */
     public void notifyObservers(Coche coche, Model model) {
-        for(Observer o : observers) {
+        for (Observer o : observers) {
             o.update(coche, this);
         }
     }
