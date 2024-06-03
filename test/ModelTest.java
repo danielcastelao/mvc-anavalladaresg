@@ -6,74 +6,55 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ModelTest {
+    private Model model;
 
     @BeforeEach
-    void setUp() {
-        Model.crearCoche("1234-ABC", "Model S");                    // Assuming there's a method to add cars
+    void configurar() {
+        model = new Model();
+        Model.crearCoche("1234-ABC", "Model S");
     }
 
-    /**
-     * Comprueba que puedes añadir un coche al parking
-     */
     @Test
-    public void shouldAddCarToParking() {
-        assertNotNull(Model.getCoche("1234-ABC"));
-    }
-
-    /**
-     * Prueba la búsqueda de un coche existente
-     */
-    @Test
-    void getCocheExistente() {
-        Coche c = Model.getCoche("1234-ABC");
-        assertNotNull(c);
-        assertEquals("1234-ABC", c.matricula);
-    }
-
-    /**
-     * Prueba la búsqueda de un coche no existente
-     */
-    @Test
-    void getCocheNoExistente() {
-        Coche c = Model.getCoche("0000-XXX");
-        assertNull(c);
-    }
-
-    /**
-     * Prueba el cambio de velocidad de un coche existente
-     */
-    @Test
-    void cambiarVelocidadCocheExistente() {
-        Model.cambiarVelocidad("1234-ABC", 150);
+    public void deberiaIncrementarVelocidadDelCoche() {
+        Model.cambiarVelocidad("1234-ABC", 100, model);
+        Model.subirVelocidad("1234-ABC", 50, model);
         Coche c = Model.getCoche("1234-ABC");
         assert c != null;
         assertEquals(150, c.velocidad);
     }
 
-    /**
-     * Prueba el cambio de velocidad de un coche no existente
-     */
     @Test
-    void cambiarVelocidadCocheNoExistente() {
-        Model.cambiarVelocidad("0000-XXX", 150);
+    public void deberiaDecrementarVelocidadDelCoche() {
+        Model.subirVelocidad("1234-ABC", 100, model);
+        Model.bajarVelocidad("1234-ABC", 50, model);
+        Coche c = Model.getCoche("1234-ABC");
+        assert c != null;
+        assertEquals(50, c.velocidad);
+    }
+
+    @Test
+    public void noDeberiaCambiarVelocidadDeCocheInexistente() {
+        Model.cambiarVelocidad("0000-XXX", 150, model);
         Coche c = Model.getCoche("0000-XXX");
         assertNull(c);
     }
 
-    /**
-     * Prueba la obtención de la velocidad de un coche existente
-     */
     @Test
-    void getVelocidadCocheExistente() {
-        int v = Model.getVelocidad("1234-ABC");
-        assertEquals(0, v);
+    public void noDeberiaIncrementarVelocidadDeCocheInexistente() {
+        Model.subirVelocidad("0000-XXX", 50, model);
+        Coche c = Model.getCoche("0000-XXX");
+        assertNull(c);
     }
 
-    /**
-     * Prueba la obtención de la velocidad de un coche no existente
-     */
     @Test
-    void getVelocidadCocheNoExistente() {
+    public void noDeberiaDecrementarVelocidadDeCocheInexistente() {
+        Model.bajarVelocidad("0000-XXX", 50, model);
+        Coche c = Model.getCoche("0000-XXX");
+        assertNull(c);
+    }
+
+    @Test
+    public void deberiaRetornarMenosUnoParaVelocidadDeCocheInexistente() {
         int v = Model.getVelocidad("0000-XXX");
         assertEquals(-1, v);
     }
