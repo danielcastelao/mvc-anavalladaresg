@@ -75,6 +75,23 @@ public class Model implements Observable {
     }
 
     /**
+     * Baja la velocidad de un coche
+     * @param matricula Matrícula del coche
+     * @param v Velocidad a bajar
+     * @param model Modelo
+     * @return Nueva velocidad o null si no existe el coche
+     */
+    public static Integer bajarVelocidad(String matricula, int v, Model model) {
+        Coche c = getCoche(matricula);
+        if (c != null) {
+            c.velocidad -= v;
+            model.notifyObservers(getCoche(matricula), model);
+            return c.velocidad;
+        }
+        return null;
+    }
+
+    /**
      * Obtiene la velocidad de un coche
      *
      * @param matricula Matrícula del coche
